@@ -16,3 +16,4 @@ Steps:
   - Install Google Cloud Context, configure kubectl to use it
   - Update Skaffold Config
 - Create route backbones
+- implement error handling

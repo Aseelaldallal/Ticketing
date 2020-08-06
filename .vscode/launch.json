@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "name": "Auth",
+      "type": "cloudcode.kubernetes",
+      "request": "attach",
+      "language": "Node",
+      "debugPort": 9229,
+      "podSelector": {
+        "app": "auth-pod"
+      },
+      "localRoot": "${workspaceFolder}/auth",
+      "remoteRoot": "/app"
+    },
+    {
+      "name": "Run/Debug on Kubernetes",
+      "type": "cloudcode.kubernetes",
+      "request": "launch",
+      "skaffoldConfig": "${workspaceFolder}/skaffold.yaml",
+      "watch": true,
+      "cleanUp": true,
+      "portForward": true,
+      "imageRegistry": "gcr.io/directed-relic-285313"
+    }
+  ]
+}
