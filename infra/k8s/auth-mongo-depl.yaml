@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-mongodb-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-mongodb-pod
+  template:
+    metadata:
+      labels:
+        app: auth-mongodb-pod
+    spec:
+      containers:
+        - name: auth-mongodb-container
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-mongo-service
+spec:
+  selector:
+    app: auth-mongo-pod
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017 # mongo listens for traffic at this port
+      targetPort: 27017
