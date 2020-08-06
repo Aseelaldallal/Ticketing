@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-mongodb-deployment
+  name: auth-mongo-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth-mongodb-pod
+      app: auth-mongo-pod
   template:
     metadata:
       labels:
-        app: auth-mongodb-pod
+        app: auth-mongo-pod
     spec:
       containers:
-        - name: auth-mongodb-container
+        - name: auth-mongo-container
           image: mongo
 ---
 apiVersion: v1
