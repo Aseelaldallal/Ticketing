@@ -15,6 +15,12 @@ spec:
       containers:
         - name: auth-container
           image: us.gcr.io/directed-relic-285313/auth
+          env:
+            - name: JWT_KEY #name of env variable as it shows up inside container
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service
