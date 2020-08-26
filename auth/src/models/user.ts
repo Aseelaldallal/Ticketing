@@ -21,16 +21,28 @@ interface UserDoc extends mongoose.Document {
   password: string;
 }
 
-const userSchema = new mongoose.Schema({
-  email: {
-    type: String, // unrelated to typescript
-    required: true,
+const userSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String, // unrelated to typescript
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
   },
-  password: {
-    type: String,
-    required: true,
-  },
-});
+  {
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.password;
+      },
+      versionKey: false,
+    },
+  }
+);
 
 // If we use an arrow function inside, the value of 'this' inside
 // the function will be overriden, and will equal the context of this

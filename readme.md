@@ -17,3 +17,6 @@ Steps:
   - Update Skaffold Config
 - Create route backbones
 - implement error handling
+- Create model
+- Decide on auth mechanism
+  - Install cookie-session, jsonwebtoken
