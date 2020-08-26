@@ -5,7 +5,6 @@ import { User } from '../models/user';
 import { Password } from '../services/password';
 import jwt from 'jsonwebtoken';
 import { BadRequestError } from '../errors/badRequestError';
-import { AuthorizationError } from '../errors/authorizationError';
 
 const router = express.Router();
 
@@ -20,10 +19,11 @@ router.post(
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      throw new BadRequestError('User does not exist');
+      throw new BadRequestError('Invalid Credentials');
     }
-    if (!(await Password.compare(user.password, password))) {
-      throw new AuthorizationError('Incorrect Password');
+    const passwordsMatch = await Password.compare(user.password, password);
+    if (!passwordsMatch) {
+      throw new BadRequestError('Invalid Credentials');
     }
     const userJwt = jwt.sign(
       {
