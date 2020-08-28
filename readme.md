@@ -18,5 +18,6 @@ Steps:
 - Create route backbones
 - implement error handling
 - Create model
-- Decide on auth mechanism
+- Decide on auth mechanism and implement
   - Install cookie-session, jsonwebtoken
+- Testing infrastructure setup
