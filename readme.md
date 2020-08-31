@@ -21,3 +21,7 @@ Steps:
 - Decide on auth mechanism and implement
   - Install cookie-session, jsonwebtoken
 - Testing infrastructure setup
+- Work on front end
+  - Install NextJS
+  - Create Dockerfile
+  - Setup k8s (create dep file for client, add stuff to skaffold.yaml)
