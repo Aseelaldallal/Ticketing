@@ -1,10 +1,9 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { validateRequest } from '../middlewares/validateRequest';
+import { validateRequest, BadRequestError } from '@gettix/common';
 import { User } from '../models/user';
 import { Password } from '../services/password';
 import jwt from 'jsonwebtoken';
-import { BadRequestError } from '../errors/badRequestError';
 
 const router = express.Router();
 
