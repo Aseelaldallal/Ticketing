@@ -26,5 +26,6 @@ Steps:
   - Create Dockerfile
   - Setup k8s (create dep file for client, add stuff to skaffold.yaml)
 - Refactor app for code sharing --> Create common folder, publish to npm, use in services
+- Create ticketing service with ttd approach
 
 Common Module: https://github.com/Aseelaldallal/Ticketing-common
