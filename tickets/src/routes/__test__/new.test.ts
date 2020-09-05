@@ -67,3 +67,18 @@ it('creates a ticket with valid inputs', async () => {
   expect(tickets.length).toEqual(1);
   expect(tickets[0].price).toEqual(30);
 });
+
+it('returns a newly created ticket when valid inputs supplied', async () => {
+  const title = 'Valid Title';
+  const price = 20;
+  const response = await request(app)
+    .post('/api/tickets')
+    .set('Cookie', global.signup())
+    .send({
+      title,
+      price,
+    })
+    .expect(201);
+  expect(response.body.title).toEqual(title);
+  expect(response.body.price).toEqual(price);
+});
