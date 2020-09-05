@@ -13,6 +13,18 @@
       "remoteRoot": "/app"
     },
     {
+      "name": "Tickets",
+      "type": "cloudcode.kubernetes",
+      "request": "attach",
+      "language": "Node",
+      "debugPort": 9229,
+      "podSelector": {
+        "app": "tickets-pod"
+      },
+      "localRoot": "${workspaceFolder}/tickets",
+      "remoteRoot": "/app"
+    },
+    {
       "name": "Run/Debug on Kubernetes",
       "type": "cloudcode.kubernetes",
       "request": "launch",
@@ -20,7 +32,21 @@
       "watch": true,
       "cleanUp": true,
       "portForward": true,
-      "imageRegistry": "gcr.io/directed-relic-285313"
+      "imageRegistry": "gcr.io/directed-relic-285313",
+      "debug": [
+        {
+          "image": "us.gcr.io/directed-relic-285313/client",
+          "sourceFileMap": {
+            "${workspaceFolder}/client": "/app"
+          }
+        },
+        {
+          "image": "us.gcr.io/directed-relic-285313/auth",
+          "sourceFileMap": {
+            "${workspaceFolder}/auth": "Escape"
+          }
+        }
+      ]
     }
   ]
 }
