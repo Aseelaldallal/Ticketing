@@ -30,5 +30,6 @@ Steps:
 - NATS
   - Create Nats-depl
   - npm package: nats streaming server
+  - create base listener, base publisher, subjects enum, event interfaces
 
 Common Module: https://github.com/Aseelaldallal/Ticketing-common
