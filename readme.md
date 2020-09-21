@@ -31,6 +31,6 @@ Steps:
   - Create Nats-depl
   - npm package: nats streaming server
   - create base listener, base publisher, subjects enum, event interfaces in common module
-- Ticketing service: create natswrapper, create publishers
+- Ticketing service: create natswrapper, create publishers, create fake natswrapper for test, test publishing
 
 Common Module: https://github.com/Aseelaldallal/Ticketing-common
