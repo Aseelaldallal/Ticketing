@@ -1,6 +1,7 @@
 import request from 'supertest';
 import { app } from '../../app';
 import { Ticket } from '../../models/tickets';
+import { natsWrapper } from '../../nats-wrapper'; // setup.ts will replace this with fake nats wrapper
 
 it('has a route handler listening to /api/tickets for post requests', async () => {
   const response = await request(app).post('/api/tickets').send({});
@@ -81,4 +82,18 @@ it('returns a newly created ticket when valid inputs supplied', async () => {
     .expect(201);
   expect(response.body.title).toEqual(title);
   expect(response.body.price).toEqual(price);
+});
+
+it('publishes an event', async () => {
+  const title = 'Valid Title';
+  const price = 20;
+  const response = await request(app)
+    .post('/api/tickets')
+    .set('Cookie', global.signup())
+    .send({
+      title,
+      price,
+    })
+    .expect(201);
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
 });
