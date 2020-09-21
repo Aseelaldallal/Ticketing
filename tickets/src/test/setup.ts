@@ -10,6 +10,8 @@ declare global {
   }
 }
 
+jest.mock('../nats-wrapper'); // Jest will redirect import to nats_wrapper in __mocks__
+
 let mongo: any;
 
 beforeAll(async () => {
