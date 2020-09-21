@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders-mongo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders-mongo-pod
+  template:
+    metadata:
+      labels:
+        app: orders-mongo-pod
+    spec:
+      containers:
+        - name: orders-mongo-container
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders-mongo-service
+spec:
+  selector:
+    app: orders-mongo-pod
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017 # mongo listens for traffic at this port
+      targetPort: 27017
