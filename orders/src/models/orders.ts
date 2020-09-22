@@ -9,7 +9,6 @@ interface OrderAttrs {
   status: OrderStatus;
   expiresAt: Date;
   ticket: TicketDoc;
-  ß;
 }
 
 // An inteface that describes the properties that a Order
