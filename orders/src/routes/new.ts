@@ -1,8 +1,12 @@
 import express, { Request, Response } from 'express';
-import { requireAuth, validateRequest } from '@gettix/common';
+import { BadRequestError, NotFoundError, OrderStatus, requireAuth, validateRequest } from '@gettix/common';
 import { body } from 'express-validator';
+import { Ticket } from '../models/ticket';
+import { Order } from '../models/orders';
 
 const router = express.Router();
+
+const EXPIRATION_WINDOW_SECONDS = 15 * 60; // 15 minutes
 
 router.post(
   '/api/orders',
@@ -10,7 +14,31 @@ router.post(
   [body('ticketId').not().isEmpty().withMessage('TicketId must be provided')],
   validateRequest,
   async (req: Request, res: Response) => {
-    res.send({});
+    const { ticketId } = req.body;
+
+    const ticket = await Ticket.findById(ticketId);
+    if (!ticket) {
+      throw new NotFoundError();
+    }
+
+    const isReserved = await ticket.isReserved();
+    if (isReserved) {
+      throw new BadRequestError('Ticket is already reserved');
+    }
+
+    const expiration = new Date();
+    expiration.setSeconds(expiration.getSeconds() + EXPIRATION_WINDOW_SECONDS);
+
+    const order = Order.build({
+      userId: req.currentUser!.id,
+      expiresAt: expiration,
+      status: OrderStatus.Created,
+      ticket,
+    });
+    await order.save();
+
+    // Todo: Publish Order Created Event
+    res.status(201).send(order);
   }
 );
 
