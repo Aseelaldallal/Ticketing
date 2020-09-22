@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 import { OrderStatus } from '@gettix/common';
 import { TicketDoc } from './ticket';
 
+export { OrderStatus }; // To have one source of everything order related
+
 // An interface that describes the properties that
 // are required to create a new Order
 interface OrderAttrs {
