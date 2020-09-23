@@ -23,3 +23,18 @@ it('fetches the order', async () => {
     .expect(200);
   expect(order.id).toEqual(fetchedOrder.id);
 });
+
+it('returns an error if one user tries to fetch another users order', async () => {
+  const ticket = Ticket.build({
+    title: 'concert',
+    price: 20,
+  });
+  await ticket.save();
+  const user = global.signup();
+  const { body: order } = await request(app)
+    .post('/api/orders')
+    .set('Cookie', user)
+    .send({ ticketId: ticket.id })
+    .expect(201);
+  await request(app).get(`/api/orders/${order.id}`).set('Cookie', global.signup()).send().expect(401);
+});
