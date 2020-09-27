@@ -25,6 +25,18 @@
       "remoteRoot": "/app"
     },
     {
+      "name": "Orders",
+      "type": "cloudcode.kubernetes",
+      "request": "attach",
+      "language": "Node",
+      "debugPort": 9229,
+      "podSelector": {
+        "app": "orders-pod"
+      },
+      "localRoot": "${workspaceFolder}/orders",
+      "remoteRoot": "/app"
+    },
+    {
       "name": "Run/Debug on Kubernetes",
       "type": "cloudcode.kubernetes",
       "request": "launch",
