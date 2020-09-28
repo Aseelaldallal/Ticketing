@@ -23,7 +23,7 @@ const setup = async () => {
   return { listener, eventData, msg };
 };
 
-it.only('creates and saves a ticket', async () => {
+it('creates and saves a ticket', async () => {
   const { listener, eventData, msg } = await setup();
   await listener.onMessage(eventData, msg);
   const ticket = await Ticket.findById(eventData.id);
