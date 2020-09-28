@@ -48,9 +48,9 @@ it('reserves a ticket', async () => {
   await request(app).post('/api/orders').set('Cookie', global.signup()).send({ ticketId: ticket.id }).expect(201);
 });
 
-// it('emits an order created event', async () => {
-//   const ticket = Ticket.build({ id: new mongoose.Types.ObjectId().toHexString(), title: 'Concert', price: 20 });
-//   await ticket.save();
-//   await request(app).post('/api/orders').set('Cookie', global.signup()).send({ ticketId: ticket.id }).expect(201);
-//   expect(natsWrapper.client.publish).toHaveBeenCalled();
-// });
+it('emits an order created event', async () => {
+  const ticket = Ticket.build({ id: new mongoose.Types.ObjectId().toHexString(), title: 'Concert', price: 20 });
+  await ticket.save();
+  await request(app).post('/api/orders').set('Cookie', global.signup()).send({ ticketId: ticket.id }).expect(201);
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
+});
