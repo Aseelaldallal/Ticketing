@@ -3,7 +3,7 @@ import { queueGroupName } from './queue-group-name';
 import { Message } from 'node-nats-streaming';
 import { Ticket } from '../../models/tickets';
 
-class OrderCreatedListener extends Listener<OrderCreatedEvent> {
+export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
   readonly subject = Subjects.OrderCreated;
   queueGroupName = queueGroupName;
   async onMessage(data: OrderCreatedEvent['data'], msg: Message) {
