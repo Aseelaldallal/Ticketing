@@ -13,7 +13,7 @@ const setup = async () => {
     userId: mongoose.Types.ObjectId().toHexString(),
   });
   ticket.set({ orderId });
-  ticket.save();
+  await ticket.save();
   const data = {
     id: orderId,
     version: 0,
