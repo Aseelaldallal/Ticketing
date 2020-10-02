@@ -23,7 +23,7 @@
     "ts-jest": "^26.3.0"
   },
   "dependencies": {
-    "@gettix/common": "^1.0.14",
+    "@gettix/common": "^1.0.15",
     "@types/bull": "^3.14.3",
     "bull": "^3.18.0",
     "node-nats-streaming": "^0.3.2",
