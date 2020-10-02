@@ -35,5 +35,6 @@ Steps:
 - Create Orders Service: Copy basics, setup k8s configs, skaffold, ingress-nginx
 - Add mongoose-update-if-current to deal with concurrency issues
 - Implement Listeners in Orders and Ticket Services
+- Expiration service
 
 Common Module: https://github.com/Aseelaldallal/Ticketing-common
