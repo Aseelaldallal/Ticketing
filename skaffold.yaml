@@ -19,6 +19,13 @@ build:
       docker:
         dockerfile: Dockerfile
     - image: us.gcr.io/directed-relic-285313/orders
+      context: orders
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+      docker:
+        dockerfile: Dockerfile
     - image: us.gcr.io/directed-relic-285313/expiration
       context: expiration
       sync:
