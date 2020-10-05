@@ -4,7 +4,7 @@ metadata:
   name: ingress-service
   annotations: # Annotations are used to add non-identifying metadata to objects
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/use-regex: 'true' # Allows us to use regex in path matching below
+    nginx.ingress.kubernetes.io/use-regex: "true" # Allows us to use regex in path matching below
 spec:
   rules:
     - host: ticketing.dev
@@ -22,6 +22,11 @@ spec:
             backend:
               serviceName: orders-service
               servicePort: 3000
+          - path: /api/payments/?(.*)
+            backend:
+              serviceName: payments-service
+              servicePort: 3000
+
           - path: /?(.*)
             backend:
               serviceName: client-service
