@@ -61,6 +61,13 @@ OrderSchema.statics.build = (attrs: OrderAttrs) => {
   return new Order({ _id: attrs.id, ...attrs });
 };
 
+OrderSchema.statics.findByEvent = (event: { id: string; version: number }) => {
+  return Order.findOne({
+    _id: event.id,
+    version: event.version - 1,
+  });
+};
+
 const Order = mongoose.model<OrderDoc, OrderModel>('Order', OrderSchema);
 
 export { Order };
