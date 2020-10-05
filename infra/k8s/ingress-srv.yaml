@@ -26,7 +26,6 @@ spec:
             backend:
               serviceName: payments-service
               servicePort: 3000
-
           - path: /?(.*)
             backend:
               serviceName: client-service
