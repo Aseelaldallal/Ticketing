@@ -26,6 +26,7 @@ interface OrderDoc extends mongoose.Document {
 // Order model has
 interface OrderModel extends mongoose.Model<OrderDoc> {
   build(attrs: OrderAttrs): OrderDoc;
+  findByEvent(event: { id: string; version: number }): Promise<OrderDoc | null>;
 }
 
 const OrderSchema = new mongoose.Schema(
