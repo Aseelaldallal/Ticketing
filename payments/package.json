@@ -19,6 +19,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^26.0.10",
+    "@types/stripe": "^7.13.24",
     "@types/supertest": "^2.0.10",
     "jest": "^26.4.2",
     "mongodb-memory-server": "^6.6.6",
@@ -39,6 +40,7 @@
     "mongoose": "^5.9.27",
     "mongoose-update-if-current": "^1.4.0",
     "node-nats-streaming": "^0.3.2",
+    "stripe": "^8.107.0",
     "ts-node-dev": "^1.0.0-pre.56",
     "typescript": "^3.9.7"
   }
