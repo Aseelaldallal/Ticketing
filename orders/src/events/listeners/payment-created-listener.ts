@@ -15,6 +15,7 @@ export class PaymentCreatedListener extends Listener<PaymentCreatedEvent> {
       status: OrderStatus.Complete,
     });
     await order.save();
+    // we should publish event orderUpdated, in our app no need because once an order is complete nothing happens to it
     msg.ack();
   }
 }
