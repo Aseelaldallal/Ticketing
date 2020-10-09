@@ -5,6 +5,7 @@ import { OrderCreatedListener } from './events/listeners/order-created-listener'
 import { OrderCancelledListener } from './events/listeners/order-cancelled-listener';
 
 const start = async () => {
+  console.log('Job starting');
   if (!process.env.STRIPE_KEY) {
     throw new Error('STRIPE_KEY must be defined');
   }
